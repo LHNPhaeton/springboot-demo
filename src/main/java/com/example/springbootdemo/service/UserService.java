@@ -18,11 +18,8 @@ public class UserService {
     public String getUser(int id) {
         User user = userMapper.getUserById(id);
         System.out.println(user);
-
-        //ValueOperations valueOperations = redisTemplate.opsForValue();
-
         // 添加数据到redis
-        //valueOperations.set(user.getUsername(), user.toString());
+        redisTemplate.opsForValue().set(user.getUsername(), user.toString());
         return user.toString();
     }
 
